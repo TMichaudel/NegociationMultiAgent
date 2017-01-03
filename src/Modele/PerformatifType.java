@@ -10,5 +10,5 @@ package Modele;
  * @author thiba
  */
 public enum PerformatifType {
-    APPELDOFFRE, PROPOSITION, ACCEPTATION
+    APPELDOFFRE, PROPOSITION, ACCEPTATION, REFUS, TRAITE
 }

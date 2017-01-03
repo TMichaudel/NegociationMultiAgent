@@ -5,14 +5,43 @@
  */
 package Modele;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author thiba
  */
-public class NegotiateurAgent {
+public class NegotiateurAgent extends Agent {
     private String depart;
     private String destination;
-    private List<Contrainte> contraintes;
+    private ArrayList<Contrainte> contraintes;
+    private boolean isSatisfied;
+    private ArrayList<FournisseurAgent> listeFournisseurs;
+
+    public NegotiateurAgent(String depart, String destination, ArrayList<Contrainte> contraintes, Overview overview) {
+        this.isSatisfied = false;
+        this.depart = depart;
+        this.destination = destination;
+        this.contraintes = contraintes;
+        this.overview = overview;
+        this.listeFournisseurs=new ArrayList();
+    }
+    
+    @Override
+    public void run(){
+        for(FournisseurAgent fournisseur : overview.getListeFournisseurs()){
+            if(fournisseur.verifierTrajets(depart, destination)){
+                listeFournisseurs.add(fournisseur);
+            }
+        }
+        if(!listeFournisseurs.isEmpty()){
+            while(!isSatisfied){
+            }
+        }
+        else
+        {
+            System.out.println("Aucun trajet correspondant pour le départ et la destination souhaitées : "+depart+" -> "+destination);
+        }
+    }
+    
 }

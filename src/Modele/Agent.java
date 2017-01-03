@@ -9,6 +9,6 @@ package Modele;
  *
  * @author thiba
  */
-public class Agent {
-    
+public class Agent extends Thread{
+    Overview overview;
 }

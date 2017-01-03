@@ -5,12 +5,25 @@
  */
 package Modele;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author thiba
  */
-public class FournisseurAgent {
-    private List<Trajet> trajets;
+public class FournisseurAgent extends Agent {
+    private ArrayList<Trajet> trajets;
+
+    public FournisseurAgent(ArrayList<Trajet> trajets) {
+        this.trajets = trajets;
+    }
+    
+    public boolean verifierTrajets(String depart, String destination){
+        for(Trajet t : trajets){
+            if((t.getDepart()==depart)&&(t.getDestination()==destination)){
+                return true;
+            }
+        }
+           return false; 
+    }
 }
