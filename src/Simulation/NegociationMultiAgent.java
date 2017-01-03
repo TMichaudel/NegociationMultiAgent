@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negociationmultiagent;
-
+package Simulation;
+import Modele.*;
+import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author thiba
@@ -15,7 +17,8 @@ public class NegociationMultiAgent {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ArrayList<Trajet> trajets = new ArrayList();
+        trajets.add(new Trajet("Paris", "Lyon", new Date(), "Air France", 100.0));
     }
     
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 public class Contrainte {
     private ContrainteType type;
     private Date date;
-    private Float prix;
+    private Double prix;
     private String compagnie;
  
     public Contrainte(ContrainteType _type, Date _date) {
@@ -22,7 +22,7 @@ public class Contrainte {
         this.date = _date;
     }
     
-    public Contrainte(ContrainteType _type, Float _prix){
+    public Contrainte(ContrainteType _type, Double _prix){
         this.type = _type;
         this.prix = _prix;
     }
@@ -40,7 +40,7 @@ public class Contrainte {
         return date;
     }
 
-    public Float getPrix() {
+    public Double getPrix() {
         return prix;
     }
 

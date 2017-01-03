@@ -15,8 +15,8 @@ public class Overview {
     private ArrayList<Message> listeMessages;
     private ArrayList<FournisseurAgent> listeFournisseurs;
 
-    public Overview(ArrayList<Message> listeMessages, ArrayList<FournisseurAgent> listeFournisseurs) {
-        this.listeMessages = listeMessages;
+    public Overview(ArrayList<FournisseurAgent> listeFournisseurs) {
+        this.listeMessages = new ArrayList();
         this.listeFournisseurs = listeFournisseurs;
     }
 

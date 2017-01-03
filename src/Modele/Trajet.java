@@ -16,9 +16,9 @@ public class Trajet {
     private String destination;
     private Date date;
     private String compagnie;
-    private Float prix;
+    private Double prix;
 
-    public Trajet(String depart, String destination, Date date, String compagnie, Float prix) {
+    public Trajet(String depart, String destination, Date date, String compagnie, Double prix) {
         this.depart = depart;
         this.destination = destination;
         this.date = date;
@@ -42,7 +42,7 @@ public class Trajet {
         return compagnie;
     }
 
-    public Float getPrix() {
+    public Double getPrix() {
         return prix;
     }
     
