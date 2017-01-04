@@ -48,4 +48,11 @@ public class Contrainte {
         return compagnie;
     }
     
+    public void augmenterPrix() {
+        prix = prix*1.1;
+    }
+    
+    public void diminuerDate() {
+        date.setDate(date.getDate()-10);   
+    }
 }
