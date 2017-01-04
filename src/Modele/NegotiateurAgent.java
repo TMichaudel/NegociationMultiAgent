@@ -6,6 +6,8 @@
 package Modele;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -76,6 +78,12 @@ public class NegotiateurAgent extends Agent {
                 if (!isSatisfied) {
                     Message m = new Message(PerformatifType.APPELDOFFRE, this, listeFournisseurs.get(0), this.depart, this.destination, this.contraintes);
                     overview.addMessage(m);
+                    System.out.println("Message envoyé");
+                }
+                try {
+                    sleep(300);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(NegotiateurAgent.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } else {

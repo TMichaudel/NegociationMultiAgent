@@ -6,6 +6,8 @@
 package Modele;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,34 +35,46 @@ public class FournisseurAgent extends Agent {
     @Override
     public void run() {
         while (true) {
+            try {
+                sleep(300);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(FournisseurAgent.class.getName()).log(Level.SEVERE, null, ex);
+            }
             ArrayList<Message> messages = overview.getMessages(this);
             Message message_reponse = null;
             for (Message m : messages) {
+                System.out.println("message reçu");
                 switch (m.getType()) {
                     case APPELDOFFRE:
                         ArrayList<Trajet> trajets_reponse = new ArrayList();
                         for (Trajet t : trajets) {
+                            System.out.println(m.getDepart()+ " ; " + t.getDepart()+ " ; " + m.getDestination() + " ; " + t.getDestination());
                             if ((m.getDepart() == t.getDepart()) && (m.getDestination() == t.getDestination())) {
+                                System.out.println("test");
                                 boolean ok = true;
                                 for (Contrainte c : m.getContraintes()) {
                                     switch (c.getType()) {
                                         case DATEMIN:
                                             if (c.getDate().after(t.getDate())) {
+                                                System.out.println("date pas ok");
                                                 ok = false;
                                             }
                                             break;
                                         case PRIX:
                                             if (c.getPrix() < t.getPrix()) {
+                                                System.out.println("prix pas ok");
                                                 ok = false;
                                             }
                                             break;
                                         case COMPAGNIECIBLE:
                                             if (!c.getCompagnie().equals(t.getCompagnie())) {
+                                                System.out.println("cible pas ok");
                                                 ok = false;
                                             }
                                             break;
                                         case COMPAGNIEREFUS:
                                             if (c.getCompagnie().equals(t.getCompagnie())) {
+                                                System.out.println("refus pas ok");
                                                 ok = false;
                                             }
                                             break;
@@ -69,6 +83,7 @@ public class FournisseurAgent extends Agent {
                                     }
                                 }
                                 if (ok) {
+                                    System.out.println("trajets trouvés !");
                                     trajets_reponse.add(t);
                                 }
                             }

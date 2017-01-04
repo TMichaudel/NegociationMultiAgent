@@ -20,7 +20,7 @@ public class Message {
     ArrayList<Contrainte> contraintes;
     ArrayList<Trajet> trajets;
 
-    public Message(PerformatifType type, Agent emetteur, Agent recepteur, String depart, String Destination, ArrayList contraintes) {
+    public Message(PerformatifType type, Agent emetteur, Agent recepteur, String depart, String destination, ArrayList contraintes) {
         this.type = type;
         this.emetteur = emetteur;
         this.recepteur = recepteur;
