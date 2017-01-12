@@ -36,6 +36,15 @@ public class Overview {
         listeMessages.add(m);
     }
 
+    public boolean messagePending(Agent emetteur, Agent recepteur) {
+        boolean pending = false;
+        for (Message m : listeMessages){
+            if((m.getEmetteur()==emetteur)&&(m.getRecepteur()==recepteur) &&(m.getType()!=PerformatifType.TRAITE)){
+                pending = true;
+            }
+        }
+        return pending;
+    }
     public ArrayList<Message> getReponses(Agent a) {
         ArrayList<Message> result = new ArrayList();
         for (Message m : this.listeMessages) {
@@ -54,5 +63,13 @@ public class Overview {
             }
         }
         return result;
+    }
+    
+    public void traiterMessage (Agent emetteur, Agent recepteur) {
+        for (Message m : listeMessages){
+            if((m.getEmetteur()==emetteur)&&(m.getRecepteur()==recepteur) &&(m.getType()!=PerformatifType.TRAITE)){
+                m.traiterMessage();
+            }
+        }
     }
 }
