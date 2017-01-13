@@ -28,12 +28,17 @@ public class NegociationMultiAgent {
         trajets.add(new Trajet("Paris", "Lyon", new Date(2017, 5, 20), "EasyJet", 80.0));
         trajets.add(new Trajet("Paris", "Lyon", new Date(2017, 5, 19), "RyanAir", 50.0));
         
+        ArrayList<Trajet> trajets2 = new ArrayList();
+        trajets2.add(new Trajet("Paris", "Lyon", new Date(2017, 6, 6), "Air Polytech", 40.0));
+        trajets2.add(new Trajet("Paris", "Lyon", new Date(2017, 5, 10), "EasyJet", 60.0));
+        
         Overview o = new Overview();
         FournisseurAgent fournisseur = new FournisseurAgent(trajets, o);
+        FournisseurAgent fournisseur2 = new FournisseurAgent(trajets2, o);
+        
         o.addFournisseur(fournisseur);
-        
-        
-        
+        o.addFournisseur(fournisseur2);
+            
         ArrayList<Contrainte > contraintes = new ArrayList();
         contraintes.add(new Contrainte(ContrainteType.PRIX, 76.0));
         contraintes.add(new Contrainte(ContrainteType.DATEMIN, new Date(2017, 5, 20)));
@@ -42,6 +47,8 @@ public class NegociationMultiAgent {
         executor.execute(neg);
         sleep(100);
         executor.execute(fournisseur);
+        sleep(100);
+        executor.execute(fournisseur2);
         
         
     }
