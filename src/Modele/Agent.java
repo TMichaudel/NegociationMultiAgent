@@ -11,4 +11,5 @@ package Modele;
  */
 public class Agent extends Thread{
     Overview overview;
+    String name;
 }

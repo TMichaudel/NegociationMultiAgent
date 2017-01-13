@@ -18,9 +18,10 @@ public class FournisseurAgent extends Agent {
     private ArrayList<Trajet> trajets;
     private Overview overview;
 
-    public FournisseurAgent(ArrayList<Trajet> trajets, Overview overview) {
+    public FournisseurAgent(ArrayList<Trajet> trajets, Overview overview, String name) {
         this.trajets = trajets;
         this.overview = overview;
+        this.name = name;
     }
 
     public boolean verifierTrajets(String depart, String destination) {

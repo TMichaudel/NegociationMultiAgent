@@ -21,13 +21,14 @@ public class NegotiateurAgent extends Agent {
     private boolean isSatisfied;
     private ArrayList<FournisseurAgent> listeFournisseurs;
 
-    public NegotiateurAgent(String depart, String destination, ArrayList<Contrainte> contraintes, Overview overview) {
+    public NegotiateurAgent(String depart, String destination, ArrayList<Contrainte> contraintes, Overview overview, String nom) {
         this.isSatisfied = false;
         this.depart = depart;
         this.destination = destination;
         this.contraintes = contraintes;
         this.overview = overview;
         this.listeFournisseurs = new ArrayList();
+        this.name = nom;
     }
 
     @Override
@@ -45,27 +46,28 @@ public class NegotiateurAgent extends Agent {
                     switch (m.getType()) {
                         case REFUS:
                             Contrainte c_mod;
-                            int index = Math.toIntExact(Math.round(Math.random() * (contraintes.size())));
+                            int index = Math.toIntExact(Math.round(Math.random() * (contraintes.size()-1)));
                             c_mod = contraintes.get(index);
                             switch (c_mod.getType()) {
                                 case PRIX:
                                     c_mod.augmenterPrix();
-                                    System.out.println("prix augmenté");
+                                    //System.out.println("prix augmenté");
                                     contraintes.add(c_mod);
                                     break;
                                 case DATEMIN:
                                     c_mod.diminuerDate();
-                                    System.out.println("date diminuée");
+                                    //System.out.println("date diminuée");
                                     contraintes.add(c_mod);
                                     break;
                                 default:
-                                    System.out.println("Compagnie suprimée");
+                                    //System.out.println("Compagnie suprimée");
                                     break;
                             }
                             contraintes.remove(index);
                             break;
                         case PROPOSITION:
                             isSatisfied = true;
+                            System.out.println(this.name+" a trouvé sur "+m.getEmetteur().name+ " : ");
                             for (Trajet t : m.getTrajets()) {
                                 System.out.println(t.getDepart() + " ; " + t.getDestination() + " ; " + t.getDate() + " ; " + t.getCompagnie());
                             }

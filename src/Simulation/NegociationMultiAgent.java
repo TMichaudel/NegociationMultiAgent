@@ -33,8 +33,8 @@ public class NegociationMultiAgent {
         trajets2.add(new Trajet("Paris", "Lyon", new Date(2017, 5, 10), "EasyJet", 60.0));
         
         Overview o = new Overview();
-        FournisseurAgent fournisseur = new FournisseurAgent(trajets, o);
-        FournisseurAgent fournisseur2 = new FournisseurAgent(trajets2, o);
+        FournisseurAgent fournisseur = new FournisseurAgent(trajets, o, "FlightSearcher");
+        FournisseurAgent fournisseur2 = new FournisseurAgent(trajets2, o, "Traveler.com");
         
         o.addFournisseur(fournisseur);
         o.addFournisseur(fournisseur2);
@@ -42,9 +42,21 @@ public class NegociationMultiAgent {
         ArrayList<Contrainte > contraintes = new ArrayList();
         contraintes.add(new Contrainte(ContrainteType.PRIX, 76.0));
         contraintes.add(new Contrainte(ContrainteType.DATEMIN, new Date(2017, 5, 20)));
-        NegotiateurAgent neg = new NegotiateurAgent("Paris", "Lyon", contraintes, o);
+        
+        ArrayList<Contrainte> contraintes2 = new ArrayList();
+        contraintes2.add(new Contrainte(ContrainteType.PRIX, 30.0));
+        contraintes2.add(new Contrainte(ContrainteType.DATEMIN, new Date(2017, 6, 20)));
+        contraintes2.add(new Contrainte(ContrainteType.COMPAGNIECIBLE, "Air Polytech"));
+        contraintes2.add(new Contrainte(ContrainteType.COMPAGNIEREFUS, "Air France"));
+        contraintes2.add(new Contrainte(ContrainteType.COMPAGNIEREFUS,"EasyJet"));
+        
+        
+        NegotiateurAgent neg = new NegotiateurAgent("Paris", "Lyon", contraintes, o, "Bob");
+        NegotiateurAgent neg2 = new NegotiateurAgent("Paris", "Lyon", contraintes2, o, "Alice");
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.execute(neg);
+        sleep(100);
+        executor.execute(neg2);
         sleep(100);
         executor.execute(fournisseur);
         sleep(100);
