@@ -32,7 +32,6 @@ public class NegotiateurAgent extends Agent {
 
     @Override
     public void run() {
-        
 
         for (FournisseurAgent fournisseur : overview.getListeFournisseurs()) {
             if (fournisseur.verifierTrajets(depart, destination)) {
@@ -77,12 +76,14 @@ public class NegotiateurAgent extends Agent {
                     m.traiterMessage();
                 }
                 if (!isSatisfied) {
-                    //On regarde si on est pas déjà en cours de communication avec ce fournisseur
-                    if (!overview.messagePending(this, listeFournisseurs.get(0)));
-                    {
-                        Message m = new Message(PerformatifType.APPELDOFFRE, this, listeFournisseurs.get(0), this.depart, this.destination, this.contraintes);
-                        overview.addMessage(m);
-                        //System.out.println("Message envoyé");
+                    for (FournisseurAgent f : listeFournisseurs) {
+                        //On regarde si on est pas déjà en cours de communication avec ce fournisseur
+                        if (!overview.messagePending(this, f));
+                        {
+                            Message m = new Message(PerformatifType.APPELDOFFRE, this, f, this.depart, this.destination, this.contraintes);
+                            overview.addMessage(m);
+                            //System.out.println("Message envoyé");
+                        }
                     }
 
                 }
